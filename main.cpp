@@ -1,22 +1,32 @@
+#include <algorithm>
 #include <bits/stdc++.h>
+#include <functional>
 #define ll long long
 using namespace std;
 
-int n, m, arr[103];
+struct person {
+  int s, e;
+  bool operator>=(person &p) { return s >= p.s && e >= p.e; }
+};
 
-void dfs(int n, int i, int a) {
-  if (n == 0) {
-    for (int j = 1; j <= i - 1; ++j) std::cout << arr[j] << " ";
-    std::cout << endl;
-  }
-  if (i <= m) {
-    for (int j = a; j <= n; ++j) {
-      arr[i] = j;
-      dfs(n - j, i + 1, j);
-    }
-  }
-}
 int main() {
-  std::cin >> n >> m;
-  dfs(n, 1, 1);
+  std::ios::sync_with_stdio(false), cin.tie(0);
+  int t, n;
+  cin >> t;
+  while (t--) {
+    bool flag = true;
+    cin >> n;
+    vector<person> v(n);
+    for (int i = 0; i < n; ++i)
+      cin >> v[i].s >> v[i].e;
+    for (int i = 1; i < n; ++i) {
+      if (v[i] >= v[0]) {
+        flag = false;
+      }
+    }
+    if (!flag)
+      cout << "-1" << endl;
+    else
+      cout << v[0].s << endl;
+  }
 }
