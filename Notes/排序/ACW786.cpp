@@ -33,5 +33,5 @@ int main() {
   vector<int> v(n);
   for (int i = 0; i < n; ++i)
     cin >> v[i];
-  cout << quick_sort(v, 0, n - 1) << endl;
+  cout << quick_sort(v, 0, v.size()-1) << endl;
 }
