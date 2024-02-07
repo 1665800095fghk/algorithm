@@ -1,13 +1,31 @@
 #include "bits/stdc++.h"
-#include "stdlib.h"
+#include <vector>
 
 using namespace std;
 
 struct dsu {
-  vector<size_t> pa;
+  vector<int> pa;
 
-  explicit dsu(size_t size) : pa(size) {}
+  dsu(int size) {
+    pa.resize(size + 1);
+    for (int i = 1; i <= size; ++i)
+      pa[i] = i;
+  };
+
+  // int find(int x) {
+  //   if(pa[x] == x)
+  //     return x;
+  //   return find(pa[x]);
+  // }
+  int find(int x) {
+    // if(pa[x] == x)
+    //   return x;
+    // pa[x] = find(pa[x]);
+    // return pa[x];
+    return pa[x] == x ? x : pa[x] = find(pa[x]);
+  }
+
+  void merge(int i, int j) { pa[find(i)] = find(j); }
 };
 
-size_t dsu::find(size_t x) { return pa[x] == x ? x : pa[x] = find(pa[x]); }
-void dsu::unite(size_t x, size_t y) { pa[find(x)] = find(y); }
+int main() {}

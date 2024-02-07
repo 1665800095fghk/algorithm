@@ -1,15 +1,18 @@
-#include <bits/stdc++.h>
-#define ll long long
+#include "bits/stdc++.h"
+
 using namespace std;
 
-void solve() {
-    
-}
-
 int main() {
-  std::ios::sync_with_stdio(false), cin.tie(0);
-  int t;
-  cin >> t;
-  while (t--)
-  solve();
+  int n;
+  cin >> n;
+  int ans = 0;
+  for (int i = 0; i < 3; ++i) {
+    int a, b, res = 0, count = 0;
+    cin >> a >> b;
+    while (count < n)
+      count += a, res += b;
+    if (res < ans || ans == 0)
+      ans = res;
+  }
+  cout << ans << endl;
 }
